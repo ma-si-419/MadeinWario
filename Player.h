@@ -25,7 +25,10 @@ private:
 	float m_posX;
 	float m_posY;
 	//プレイヤーの移動速度
-	float m_speed;
+	float m_speedX;
+	float m_speedY;
+	//スペースが押されたか判断する変数
+	bool m_spaceFlag;
 
 };
 

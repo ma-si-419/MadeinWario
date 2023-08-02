@@ -11,6 +11,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return -1;        // エラーが起きたら直ちに終了
 	}
 
+	SetBackgroundColor(255,255,255);
+
 	SetDrawScreen(DX_SCREEN_BACK);
 
 

@@ -8,13 +8,15 @@ namespace
 	//移動速度
 	constexpr float kSpeed = 8.0f;
 }
-Player::Player():
+Player::Player() :
 	m_handle(-1),
 	m_height(0),
 	m_width(256),
 	m_posX(240),
 	m_posY(240),
-	m_speed(0)
+	m_speedX(0),
+	m_speedY(0),
+	m_spaceFlag(true)
 {
 }
 
@@ -28,20 +30,36 @@ void Player::Init()
 	m_handle = LoadGraph("data/finger.png");
 	assert(m_handle != -1);		//グラフィックのロードに失敗したら止まる
 	//プレイヤーの移動速度を設定する
-	m_speed = kSpeed;
+	m_speedX = kSpeed;
+	m_speedY = kSpeed;
 }
 
 void Player::Update()
 {
-	m_posX += m_speed;
-	if (m_posX < 0.0f)
+	if (CheckHitKey(KEY_INPUT_SPACE) && m_spaceFlag)
 	{
-		m_speed *= -1;
+		m_spaceFlag = false;
 	}
-	if (m_posX > Game::kScreenWidth - m_width)
+
+
+	if (m_spaceFlag)//スペースボタンが押されるまで
 	{
-		m_speed *= -1;
+		//横方向に移動させ続ける
+		m_posX += m_speedX;
+		if (m_posX < 0.0f)//もし左側の壁にぶつかったら
+		{
+			m_speedX *= -1;//壁に跳ね返る
+		}
+		if (m_posX > Game::kScreenWidth - m_width)//もし右側の壁にぶつかったら
+		{
+			m_speedX *= -1;//壁に跳ね返る
+		}
 	}
+	else//スペースボタンが押されたら
+	{
+		m_posY -= m_speedY;//縦方向に移動する
+	}
+
 }
 
 void Player::Draw() const
