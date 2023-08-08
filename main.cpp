@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "Player.h"
+#include "Target.h"
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	//一部の関数はDxLib_Initの前に実行する必要がある
@@ -19,7 +20,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//プレイヤーの初期化
 	Player player;
 	player.Init();
-
+	Target target;
+	target.Init();
 	//ゲームループ
 	while (ProcessMessage() != -1)
 	{
@@ -31,6 +33,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		player.Update();
 		player.Draw();
+		target.Update();
+		target.Draw();
 
 		//画面が切り替わるのを待つ
 		ScreenFlip();
