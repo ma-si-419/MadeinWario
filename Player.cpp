@@ -14,6 +14,8 @@ Player::Player() :
 	m_width(256),
 	m_posX(240),
 	m_posY(240),
+	m_fingerposX(0),
+	m_fingerposY(0),
 	m_speedX(0),
 	m_speedY(0),
 	m_spaceFlag(true)
@@ -38,7 +40,9 @@ void Player::Update()
 {
 	if (CheckHitKey(KEY_INPUT_SPACE) && m_spaceFlag)
 	{
+		//スペースを二回押させないための処理
 		m_spaceFlag = false;
+
 	}
 
 
@@ -59,6 +63,7 @@ void Player::Update()
 	{
 		m_posY -= m_speedY;//縦方向に移動する
 	}
+	//小指の座標をとり続ける
 
 }
 
