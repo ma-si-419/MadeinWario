@@ -10,14 +10,12 @@ public:
 	void Draw() const;
 
 	void SetGraphHandle(int handle);
-
-	//当たり判定をとるために必要な変数
-	float GetLeft() const;
-	float GetRight() const;
 private:
 
 	//グラフィックを入れる変数
 	int m_handle;
+	int m_clearHandle;
+	int m_failedHandle;
 	//グラフィックのサイズ
 	int m_width;
 	int m_height;
@@ -29,6 +27,8 @@ private:
 	float m_speedY;
 	//スペースが押されたか判断する変数
 	bool m_spaceFlag;
-
+	//成功したか判断する変数
+	bool m_clearFlag;
+	bool m_failedFlag;
 };
 
